@@ -61,6 +61,7 @@ class BookFactory {
     public Book createBook(long isbn, String name) {
         // do some validation on the isbn and name 
         Book b = new Book(id, isbn, name);
+        id+=1;
         return b;
     }
 }
