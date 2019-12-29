@@ -18,8 +18,8 @@ public class JavaApplication1 {
         BookFactory factory = BookFactory.getInstance();
         Library l = new Library();
         
-        Book b1 = factory.createBook(12345L, "Game of Thrones");
-        Book b2 = factory.createBook(12346L, "A Song of Ice And Fire");
+        Book b1 = factory.createBook("12345", "Game of Thrones");
+        Book b2 = factory.createBook("12346", "A Song of Ice And Fire");
         
         l.addBook(b1);
         l.addBook(b2);
@@ -40,7 +40,7 @@ class Library {
     
     public void printBooks(){
         books.forEach(b->{
-            System.out.println(String.format("ID: %d, ISBN: %d, NAME: %s", b.getId(), b.getIsbn(), b.getName()));
+            System.out.println(String.format("ID: %d, ISBN: %s, NAME: %s", b.getId(), b.getIsbn(), b.getName()));
         });
     }
 }
@@ -58,7 +58,7 @@ class BookFactory {
         }
     }
     
-    public Book createBook(long isbn, String name) {
+    public Book createBook(String isbn, String name) {
         // do some validation on the isbn and name 
         Book b = new Book(id, isbn, name);
         id+=1;
@@ -68,10 +68,10 @@ class BookFactory {
 
 class Book { 
     private int id;
-    private long isbn;
+    private String isbn;
     private String name;
 
-    public Book(int id, long isbn, String name){
+    public Book(int id, String isbn, String name){
         this.id = id;
         this.isbn = isbn;
         this.name = name;
@@ -94,14 +94,14 @@ class Book {
     /**
      * @return the isbn
      */
-    public long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
     /**
      * @param isbn the isbn to set
      */
-    public void setIsbn(long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
